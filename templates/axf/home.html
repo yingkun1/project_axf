@@ -1,0 +1,66 @@
+{% extends 'axf/base.html'%}
+
+{% load static from staticfiles %}
+{% block linkscript%}
+    <link rel="stylesheet" type="text/css" href="{% static'home/css/home.css'%}"/>
+    <script type="text/javascript" charset="UTF-8" src="{% static'home/js/home.js'%}"></script>
+{% endblock linkscript%}
+<div id="home">
+    <!--轮播-->
+    <section class="swiper-container" id="topSwiper">
+        <div class="swiper-wrapper">
+            {% for item in wheeList %}
+            <div class="swiper-slide">
+                <a href="#">
+                    <img src="{{item.img}}"/>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"></div>
+    </section>
+
+    <section class="topMenu">
+        <nav>
+            <ul>
+                {% for item in navList %}
+                <li>
+                    <a href="#">
+                        <img src="{{item.img}}"/>
+                        <span>{{item.name}}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </nav>
+
+        <!--小轮播-->
+        <menu class="swiper-container" id="swiperMenu">
+            <ul class="swiper-wrapper">
+                {% for item in mustbuyList %}
+                <li class="swiper-slide">
+                    <a>
+                        <img src="{{item.img}}">
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </menu>
+    </section>
+
+    <section class="CSV">
+        <h2>
+            <img src="{{shop1.img}}" alt="{{shop1.name}}">
+        </h2>
+        <fieldset>
+            {% for x in shop2 %}
+                <a href="#">
+                    <img src="{{x.img}}" alt="{{x.name}}">
+                </a>
+            {% endfor %}
+        </fieldset>
+
+    </section>
+</div>
+{% block base %}
+{% endblock base%}

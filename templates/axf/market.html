@@ -1,0 +1,72 @@
+{% extends 'axf/base.html'%}
+
+{% load static from staticfiles %}
+{% block linkscript%}
+    <link rel="stylesheet" type="text/css" href="{% static'market/css/market.css'%}"/>
+    <script type="text/javascript" charset="UTF-8" src="{% static'market/js/market.js'%}"></script>
+{% endblock linkscript%}
+
+{% block base %}
+<div id="market">
+    <aside>
+        <menu>
+            <ul>
+                {% for item in leftSlider%}
+                <li>
+                    <span class="yellowSlider">
+                        <a href="/market/{{item.typeid}}">{{item.typename}}</a>
+                    </span>
+                </li>
+                {% endfor %}
+            </ul>
+        </menu>
+    </aside>
+
+    <section>
+        <nav>
+            <ul>
+                <li>
+
+                </li>
+            </ul>
+        </nav>
+
+        <menu>
+            <ul>
+                {% for item in productList %}
+                <li>
+
+                </li>
+                {% endfor %}
+            </ul>
+        </menu>
+
+        <div id="typediv">
+            {% for item in childNameList %}
+            <a href="#">
+                <span>
+                    {{item.childName}}
+                    <!--{{flag=0}}-->
+                    {% for c in cartlist %}
+                        {% if isequal c.productid item.productid %}
+                            <sapn id="{{item.productid}}">{{c.productnum}}</sapn>
+                        <!--{{ flag=1}}-->
+                        {% endif %}
+                    {% empty %}
+                        <span id="{{item.productid}}">{{item.num|default:0}}</span>
+                    {% endfor%}
+                    <!--{% if flag==0 %}-->
+                        <!--<span id="{{item.productid}}"></span>-->
+                    <!--{% endif %}-->
+                    <!--{% comment %}-->
+                    <!--{% if forloop.counter == cartlistnum %}-->
+                        <!--<span id="{item.productid}">0</span>-->
+                    <!--{% endif %}-->
+                    <!--{% endcomment %}-->
+                </span>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock base%}
